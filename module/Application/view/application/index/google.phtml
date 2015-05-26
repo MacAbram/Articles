@@ -1,0 +1,34 @@
+<h1>The Journal Articles (Google Tag)</h1>
+
+<?php 
+if (isset($error)) {
+	echo '<div class="alert alert-danger">'.$error.'</div>';
+} else {
+?>
+<table class="table col-md-12 col-lg-12">
+	<thead>
+		<tr>
+			<th class="col-sm-2 col-md-2 col-lg-2">Image</td>
+	 		<th class="col-sm-3 col-md-3 col-lg-3">Title</td>
+	 		<th class="col-sm-7 col-md-7 col-lg-7">Excerpt</td>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+	foreach ($content->response->articles as $article) {
+		if (isset($article->title)) {
+?>
+		<tr>
+			<td><img src="<?php echo $article->images->thumbnail->image; ?>" alt="<?php echo $article->title; ?>" /></td>
+			<td><?php echo $article->title; ?></td>
+			<td><?php echo $article->excerpt; ?></td>
+		</tr>
+<?php
+		}
+	}
+?>
+	</tbody>
+<?php
+}
+?>
+</table>
